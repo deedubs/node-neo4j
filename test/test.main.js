@@ -465,8 +465,7 @@ describe('Testing Node specific operations for Neo4j', function(){
                 db.readRelationshipTypes(function(err, result){
 
                     should.not.exist(err);
-                    result.length.should.equal.gt(1);
-                    result[0].should.equal('RELATED_TO');
+                    result.should.include('RELATED_TO')
                     done();
                 });
             });

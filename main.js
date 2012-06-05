@@ -410,3 +410,5 @@ Neo4j.prototype.stringifyValueObjects = function(node_data, callback){
 };
 
 
+require('./lib/neo4j/indexes').extend(Neo4j);
+
