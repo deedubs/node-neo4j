@@ -20,6 +20,7 @@ Neo4j.prototype.insertNode = function(node, callback){
         .send(node)
         .type('form')
         .set('Accept', 'application/json')
+        .set('Content-Type', 'application/json')
         .end(function(result){
             if(typeof result.body !== 'undefined'){
                 that.addNodeId(result.body, callback);
@@ -87,6 +88,7 @@ Neo4j.prototype.updateNode = function(node_id, node_data, callback){
         .put(this.url + '/db/data/node/' + node_id + '/properties')
         .send(that.stringifyValueObjects(that.replaceNullWithString(node_data)))
         .set('Accept', 'application/json')
+        .set('Content-Type', 'application/json')
         .end(function(result){
             switch(result.statusCode){
                 case 204:
@@ -114,6 +116,7 @@ Neo4j.prototype.insertRelationship = function(root_node_id, other_node_id, relat
             data: that.stringifyValueObjects(that.replaceNullWithString(relationship_data))
         })
         .set('Accept', 'application/json')
+        .set('Content-Type', 'application/json')
         .end(function(result){
             switch(result.statusCode){
                 case 201:
@@ -185,6 +188,7 @@ Neo4j.prototype.updateRelationship = function(relationship_id, relationship_data
         .put(that.url + '/db/data/relationship/' + relationship_id + '/properties')
         .send(that.stringifyValueObjects(that.replaceNullWithString(relationship_data)))
         .set('Accept', 'application/json')
+        .set('Content-Type', 'application/json')
         .end(function(result){
             switch(result.statusCode){
                 case 204:
